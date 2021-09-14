@@ -187,7 +187,7 @@ contract LoanFactory2 is ILoanFactory2, Initializable {
         require(ltImplementationAddress != address(0), "LoanFactory: Loan token implementation should be set");
 
         address newToken = Clones.clone(ltImplementationAddress);
-        LoanToken2(newToken).initialize(_pool, borrowingMutex, _borrower, lender, ftlAgency, admin, liquidator, _amount, _term, _apy);
+        LoanToken2(newToken).initialize(_pool, borrowingMutex, _borrower, lender, ftlAgency, admin, _amount, _term, _apy);
         isLoanToken[newToken] = true;
 
         emit LoanTokenCreated(newToken);
@@ -198,7 +198,7 @@ contract LoanFactory2 is ILoanFactory2, Initializable {
         ITrueFiPool2 _pool,
         address _borrower,
         uint256 _debt
-    ) external override onlyTCA {
+    ) external override onlyTCA returns (address) {
         address dtImplementationAddress = address(debtTokenImplementation);
         require(dtImplementationAddress != address(0), "LoanFactory: Debt token implementation should be set");
 
@@ -207,6 +207,8 @@ contract LoanFactory2 is ILoanFactory2, Initializable {
         isDebtToken[newToken] = true;
 
         emit DebtTokenCreated(newToken);
+
+        return newToken;
     }
 
     function isCreatedByFactory(address loan) external override view returns (bool) {

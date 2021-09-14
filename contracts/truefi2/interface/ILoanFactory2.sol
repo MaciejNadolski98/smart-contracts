@@ -24,7 +24,7 @@ interface ILoanFactory2 {
         ITrueFiPool2 _pool,
         address _borrower,
         uint256 _debt
-    ) external;
+    ) external returns (address);
 
     function isCreatedByFactory(address) external view returns (bool);
 
