@@ -78,7 +78,6 @@ describe('LoanToken2', () => {
       lender.address,
       AddressZero,
       lender.address,
-      lender.address, // easier testing purposes
       parseEth(1000),
       yearInSeconds,
       1000,
@@ -694,7 +693,7 @@ describe('LoanToken2', () => {
   describe('Debt calculation', () => {
     const getDebt = async (amount: number, termInMonths: number, apy: number) => {
       const contract = await new LoanToken2__factory(borrower).deploy()
-      await contract.initialize(poolAddress, borrowingMutex.address, borrower.address, lender.address, AddressZero, lender.address, lender.address, parseEth(amount.toString()), termInMonths * averageMonthInSeconds, apy)
+      await contract.initialize(poolAddress, borrowingMutex.address, borrower.address, lender.address, AddressZero, lender.address, parseEth(amount.toString()), termInMonths * averageMonthInSeconds, apy)
       return Number.parseInt(formatEther(await contract.debt()))
     }
 

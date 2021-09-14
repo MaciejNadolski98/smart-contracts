@@ -337,7 +337,6 @@ describe('TrueLender2', () => {
           lender.address,
           AddressZero,
           owner.address,
-          AddressZero,
           100000,
           DAY,
           100,

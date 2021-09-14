@@ -714,7 +714,6 @@ describe('TrueRatingAgencyV2', () => {
           owner.address,
           AddressZero,
           owner.address,
-          AddressZero,
           parseUSDC(5e6),
           yearInSeconds * 2,
           100,
